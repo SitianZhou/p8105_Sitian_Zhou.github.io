@@ -73,6 +73,8 @@ nyc_airbnb |>
 
 # ggplotly
 
+but dont use it
+
 ggplot scatterplot
 
 ```{r}
