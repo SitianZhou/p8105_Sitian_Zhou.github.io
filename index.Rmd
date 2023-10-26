@@ -23,21 +23,6 @@ This is a [link](https://www.google.com/) to a good data science tool. Here is a
 
 
 
-you can still use R
-
-```{r}
-library(tidyverse)
-plot_df = 
-  tibble(
-    x = runif(100),
-    y = 1 + 2 * x + rnorm(100)
-  )
-
-plot_df |> 
-  ggplot(aes(x = x, y = y)) +
-  geom_point()
-```
-
 
 # Here's a new section
 
