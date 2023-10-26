@@ -1,23 +1,25 @@
 ---
-title: "Plotly"
+title: "Untitled"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
-    theme: cerulean
-editor_options: 
-  chunk_output_type: console
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 
+```{r setup, include=FALSE}
+library(flexdashboard)
 
-# Plotly
-
-```{r}
 library(tidyverse)
 library(plotly)
 library(p8105.datasets)
 ```
 
+This is a dashboard
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
 
 ```{r}
 data("nyc_airbnb")
@@ -33,11 +35,7 @@ nyc_airbnb <-
     room_type == "Entire home/apt",
     price %in% 100:500
   )
-```
 
-let's make a scatterplot
-
-```{r}
 nyc_airbnb |> 
   mutate(text_label = str_c("Price: $", price, "\nRating: ", stars)) |> 
   plot_ly(
@@ -45,17 +43,10 @@ nyc_airbnb |>
     type = "scatter", mode = "markers", alpha = 0.5)
 ```
 
+Column {data-width=350}
+-----------------------------------------------------------------------
 
-Let's make a box plot
-
-```{r}
-nyc_airbnb |> 
-  mutate(neighbourhood = fct_reorder(neighbourhood, price)) |> 
-  plot_ly(y = ~price, color = ~neighbourhood, type = "box", colors = "viridis")
-```
-
-
-Let's make a bar plot
+### Chart B
 
 ```{r}
 nyc_airbnb |> 
@@ -68,44 +59,11 @@ nyc_airbnb |>
           colors = "viridis")
 ```
 
-
-# ggplotly
-
-but dont use it
-
-ggplot scatterplot
+### Chart C
 
 ```{r}
-ggp_scatter = 
-  nyc_airbnb |> 
-  ggplot(aes(x = lat, y = long, color = price)) +
-  geom_point(alpha = 0.5)
-
-ggplotly(ggp_scatter)
+nyc_airbnb |> 
+  mutate(neighbourhood = fct_reorder(neighbourhood, price)) |> 
+  plot_ly(y = ~price, color = ~neighbourhood, type = "box", colors = "viridis")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
